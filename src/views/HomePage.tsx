@@ -19,7 +19,7 @@ export default function HomePage () {
     fetchLatestMovies('https://api.themoviedb.org/3/discover/movie?sort_by=release_date.desc&api_key=')
   }, [])
   return (
-    <div className='sm:mx-1 md:mx-5'>
+    <div className='mx-2 sm:mx-1 md:mx-5'>
         <Row title='Peliculas Populares' items={popularMovies}/>
         <Row title='Series populares' items={popularSeries}/>
         <Row title='Últimas Peliculas' items={latestSeries}/>

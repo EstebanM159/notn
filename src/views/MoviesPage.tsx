@@ -10,10 +10,12 @@ export default function MoviesPage () {
   const { filters, handleClick } = useSetFilters()
   useFetchDataEffect()
   useSearchByGenresEffect(filters, searchByGenres, setLoading)
+
   return (
     <>
     <h2 className='text-xl mb-3 mx-8'>Generos</h2>
     <div className='mx-8 items-center'>
+      {/* Todo: slider */}
       <ul className='flex gap-2 overflow-scroll no-scrollbar'>
         {genres.map(genre => (
           <li key={genre.id}
@@ -30,7 +32,7 @@ export default function MoviesPage () {
        {
         loading
           ? <Spinner/>
-          : <section className='grid grid-cols-4 mx-8 gap-4'>
+          : <section className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-8 gap-4'>
           {movies.map(movie => (
             <div className="flex flex-col gap-2" key={movie.id}>
               <p className='text-center whitespace-nowrap overflow-hidden'>{movie.title}</p>
