@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ResponseApiPopularMovieSchema, ResponseApiMovieGenres } from '../schemas'
+import { ResponseApiPopularMovieSchema, ResponseApiGenres } from '../schemas'
 const appId = import.meta.env.VITE_API_KEY
 
 export async function getMovies (url: string) {
@@ -18,7 +18,7 @@ export async function getMovies (url: string) {
 export async function getGenresMovies (url: string) {
   try {
     const { data: { genres } } = await axios(`${url}${appId}`)
-    const result = ResponseApiMovieGenres.safeParse(genres)
+    const result = ResponseApiGenres.safeParse(genres)
     if (result.success) {
       return result.data
     } else {

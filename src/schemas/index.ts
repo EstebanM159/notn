@@ -35,5 +35,4 @@ export const ResponseApiGenreSchema = z.object({
   id: z.number(),
   name: z.string()
 })
-export const ResponseApiMovieGenres = z.array(ResponseApiGenreSchema
-)
+export const ResponseApiGenres = z.array(ResponseApiGenreSchema)
