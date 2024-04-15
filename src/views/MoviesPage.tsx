@@ -1,21 +1,14 @@
 import { useState } from 'react'
 import { useAppStore } from '../stores/useAppStore'
-import { type Genre } from '../types'
-import Spinner from '../icons/Spinner'
+import { useSetFilters } from '../hooks/useSetFilters'
 import { useFetchDataEffect } from '../hooks/useFetchDataEffect'
 import { useSearchByGenresEffect } from '../hooks/useSearchByGenresEffect'
+import Spinner from '../icons/Spinner'
 export default function MoviesPage () {
   const [loading, setLoading] = useState(false)
   const { genres, movies, searchByGenres } = useAppStore()
-  const [filters, setFilters] = useState<Array<Genre['id']>>([])
+  const { filters, handleClick } = useSetFilters()
   useFetchDataEffect()
-  const handleClick = (genre: Genre['id']) => {
-    setFilters(prevFilters =>
-      prevFilters.includes(genre)
-        ? prevFilters.filter(fil => fil !== genre)
-        : [...prevFilters, genre]
-    )
-  }
   useSearchByGenresEffect(filters, searchByGenres, setLoading)
   return (
     <>
