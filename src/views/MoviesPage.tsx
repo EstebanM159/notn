@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAppStore } from '../stores/useAppStore'
 import { type Genre } from '../types'
 import Spinner from '../icons/Spinner'
+import { useFetchDataEffect } from '../hooks/useFetchDataEffect'
+import { useSearchByGenresEffect } from '../hooks/useSearchByGenresEffect'
 export default function MoviesPage () {
   const [loading, setLoading] = useState(false)
-  const { fetchMovies, fetchGenresMovies, genres, movies, searchByGenres } = useAppStore()
+  const { genres, movies, searchByGenres } = useAppStore()
   const [filters, setFilters] = useState<Array<Genre['id']>>([])
-  useEffect(() => {
-    fetchGenresMovies('https://api.themoviedb.org/3/genre/movie/list?api_key=')
-    fetchMovies('https://api.themoviedb.org/3/movie/popular?api_key=')
-  }, [])
+  useFetchDataEffect()
   const handleClick = (genre: Genre['id']) => {
     setFilters(prevFilters =>
       prevFilters.includes(genre)
@@ -17,13 +16,7 @@ export default function MoviesPage () {
         : [...prevFilters, genre]
     )
   }
-  useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      searchByGenres(filters)
-      setLoading(false)
-    }, 500)
-  }, [filters])
+  useSearchByGenresEffect(filters, searchByGenres, setLoading)
   return (
     <>
     <h2 className='text-xl mb-3 mx-8'>Generos</h2>
