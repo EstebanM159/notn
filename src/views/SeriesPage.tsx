@@ -31,7 +31,7 @@ export default function SeriesPage () {
       <div className='mx-8 flex items-center relative'>
         <MdChevronLeft
               onClick={slideLeft}
-              className='bg-zinc-800 text-white top-0 bottom-0 left-0 absolute opacity-50 hover:opacity-40 cursor-pointer z-10 group-hover:block'
+              className='bg-zinc-800 text-white top-0 bottom-0 left-0 absolute opacity-50 md:hidden hover:opacity-40 cursor-pointer z-10 group-hover:block'
               size={30}
         />
         <ul className='flex gap-2 overflow-scroll scroll-smooth no-scrollbar relative'>
@@ -47,7 +47,7 @@ export default function SeriesPage () {
         </ul>
         <MdChevronRight
               onClick={slideRight}
-              className='bg-zinc-800 text-white top-0 bottom-0 right-0 absolute opacity-60 hover:opacity-40 cursor-pointer z-10 group-hover:block'
+              className='bg-zinc-800 text-white top-0 bottom-0 right-0 absolute opacity-60 md:hidden hover:opacity-40 cursor-pointer z-10 group-hover:block'
               size={30}
               />
       </div>

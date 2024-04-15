@@ -3,6 +3,8 @@ import { useAppStore } from '../stores/useAppStore'
 import { useSetFilters } from '../hooks/useSetFilters'
 import { useFetchDataEffect } from '../hooks/useFetchDataEffect'
 import { useSearchByGenresEffect } from '../hooks/useSearchByGenresEffect'
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
+
 import Spinner from '../icons/Spinner'
 export default function MoviesPage () {
   const [loading, setLoading] = useState(false)
@@ -10,24 +12,44 @@ export default function MoviesPage () {
   const { filters, handleClick } = useSetFilters()
   useFetchDataEffect()
   useSearchByGenresEffect(filters, searchByGenres, setLoading)
-
+  const slideLeft = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
+    const slider = event.currentTarget.nextElementSibling as HTMLDivElement
+    if (slider) {
+      slider.scrollLeft -= 300
+    }
+  }
+  const slideRight = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
+    const slider = event.currentTarget.previousElementSibling as HTMLDivElement
+    if (slider) {
+      slider.scrollLeft += 300
+    }
+  }
   return (
     <>
     <h2 className='text-xl mb-3 mx-8'>Generos</h2>
-    <div className='mx-8 items-center'>
-      {/* Todo: slider */}
-      <ul className='flex gap-2 overflow-scroll no-scrollbar'>
-        {genres.map(genre => (
-          <li key={genre.id}
-              className={filters.includes(genre.id)
-                ? 'bg-white text-black h-fit py-1 px-2 rounded-lg font-normal text-sm cursor-pointer  text-center text-nowrap'
-                : 'bg-gray-950 h-fit py-1 px-2 rounded-lg font-extralight text-sm cursor-pointer text-center text-nowrap'}
-              onClick={() => { handleClick(genre.id) }}>
-              {genre.name}
-          </li>
-        ))}
-      </ul>
-    </div>
+     <div className='mx-8 flex items-center relative'>
+        <MdChevronLeft
+              onClick={slideLeft}
+              className='bg-zinc-800 text-white top-0 bottom-0 left-0 absolute opacity-50 md:hidden hover:opacity-40 cursor-pointer z-10 group-hover:block'
+              size={30}
+        />
+        <ul className='flex gap-2 overflow-scroll scroll-smooth no-scrollbar relative'>
+            {genres.map(genre => (
+              <li key={genre.id}
+                  className={filters.includes(genre.id)
+                    ? 'bg-white text-black h-fit py-1 px-2 rounded-lg font-normal text-sm cursor-pointer  text-center text-nowrap'
+                    : 'bg-gray-950 h-fit py-1 px-2 rounded-lg font-extralight text-sm cursor-pointer text-center text-nowrap'}
+                  onClick={() => { handleClick(genre.id) }}>
+                  {genre.name}
+              </li>
+            ))}
+        </ul>
+        <MdChevronRight
+              onClick={slideRight}
+              className='bg-zinc-800 text-white top-0 bottom-0 right-0 absolute opacity-60 md:hidden hover:opacity-40 cursor-pointer z-10 group-hover:block'
+              size={30}
+              />
+      </div>
     <h3 className='text-4xl text-center my-5'>Peliculas</h3>
        {
         loading

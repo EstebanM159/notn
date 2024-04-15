@@ -9,11 +9,11 @@ export default function MovieSerie ({ item }: MovieSerieProps) {
   }
   return (
     <div onClick={() => handleClick(item.id)}
-      className='w-[160px] sm:w-[200px] md:w-[240px]
-                lg:w-[280px] inline-block cursor-pointer relative mr-2 md:mx-3'>
+      className='w-40 sm:w-52 md:w-60 lg:w-72 inline-block cursor-pointer relative mr-2 md:mx-3'>
       {
         item.backdrop_path
           ? <img
+              rel='preload'
               className='w-full h-auto block'
               src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
             />
