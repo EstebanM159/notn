@@ -12,7 +12,7 @@ export type MovieSliceType = {
   fetchGenresMovies: (url: string) => Promise<void>
   searchByGenres: (genresID: Array<Genre['id']>) => Promise<void>
 }
-export const createMovieSlice: StateCreator<MovieSliceType> = (set, get) => ({
+export const createMovieSlice: StateCreator<MovieSliceType> = (set) => ({
   popularMovies: [],
   latestMovies: [],
   genres: [],
