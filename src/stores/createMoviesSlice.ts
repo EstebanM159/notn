@@ -18,7 +18,7 @@ export type MovieSliceType = {
   showModal: (id: Genre['id'], isMovie: boolean) => Promise<void>
   closeModal: () => void
 }
-export const createMovieSlice: StateCreator<MovieSliceType> = (set, get) => ({
+export const createMovieSlice: StateCreator<MovieSliceType> = (set) => ({
   popularMovies: [],
   latestMovies: [],
   genres: [],
