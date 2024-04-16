@@ -20,7 +20,8 @@ export default function AppRouter () {
                         <Suspense fallback={<Spinner/>}>
                             <MoviesPage/>
                         </Suspense>
-                    }/>
+                    }>
+                    </Route>
                     <Route path='/series' element={
                         <Suspense fallback={<Spinner/>}>
                             <SeriesPage/>

@@ -15,3 +15,17 @@ export type MovieSerieType = {
   title?: string
   name?: string
 }
+export type SingleMovieSerie = {
+  id: number
+  backdrop_path: string | null
+  overview: string
+  poster_path: string | null
+  original_title?: string
+  genres: Genre[]
+  original_name?: string
+  release_date?: string
+  first_air_date?: string
+  title?: string
+  name?: string
+  popularity: number
+}

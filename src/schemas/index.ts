@@ -1,4 +1,9 @@
 import { z } from 'zod'
+export const ResponseApiGenreSchema = z.object({
+  id: z.number(),
+  name: z.string()
+})
+export const ResponseApiGenres = z.array(ResponseApiGenreSchema)
 export const ResponseApiMovieSchema = z.object({
   id: z.number(),
   backdrop_path: z.string().nullable(),
@@ -18,7 +23,6 @@ export const ResponseApiPopularMovieSchema = z.object({
 export const ResponseApiSerieSchema = z.object({
   id: z.number(),
   backdrop_path: z.string().nullable(),
-  //   genre_ids: z.array(z.number),
   original_name: z.string(),
   overview: z.string(),
   first_air_date: z.string(),
@@ -31,8 +35,25 @@ export const ResponseApiPopularSerieSchema = z.object({
   total_pages: z.number(),
   total_results: z.number()
 })
-export const ResponseApiGenreSchema = z.object({
+export const ResponseApiSingleMovie = z.object({
   id: z.number(),
-  name: z.string()
+  backdrop_path: z.string().nullable(),
+  original_title: z.string(),
+  genres: z.array(ResponseApiGenreSchema),
+  overview: z.string(),
+  release_date: z.string(),
+  poster_path: z.string().nullable(),
+  title: z.string(),
+  popularity: z.number()
 })
-export const ResponseApiGenres = z.array(ResponseApiGenreSchema)
+export const ResponseApiSingleSerie = z.object({
+  id: z.number(),
+  backdrop_path: z.string().nullable(),
+  original_name: z.string(),
+  genres: z.array(ResponseApiGenreSchema),
+  overview: z.string(),
+  first_air_date: z.string(),
+  poster_path: z.string().nullable(),
+  name: z.string(),
+  popularity: z.number()
+})

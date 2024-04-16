@@ -4,6 +4,6 @@ export const useFetchDataEffect = () => {
   const { fetchGenresMovies } = useAppStore()
 
   useEffect(() => {
-    fetchGenresMovies('https://api.themoviedb.org/3/genre/movie/list?api_key=')
+    fetchGenresMovies('https://api.themoviedb.org/3/genre/movie/list?language=es&api_key=')
   }, [])
 }

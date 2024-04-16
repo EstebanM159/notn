@@ -6,12 +6,12 @@ import { useSetFilters } from '../hooks/useSetFilters'
 import { useSearchByGenresEffect } from '../hooks/useSearchByGenresEffect'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 export default function SeriesPage () {
-  const { fetchGenresSeries, genresSeries, series, searchSeriesByGenres } = useAppStore()
+  const { fetchGenresSeries, genresSeries, series, searchSeriesByGenres, showModal } = useAppStore()
   const [loading, setLoading] = useState(false)
   const { handleClick, filters } = useSetFilters()
   useSearchByGenresEffect(filters, searchSeriesByGenres, setLoading)
   useEffect(() => {
-    fetchGenresSeries('https://api.themoviedb.org/3/genre/tv/list?api_key=')
+    fetchGenresSeries('https://api.themoviedb.org/3/genre/tv/list?language=es&api_key=')
   }, [])
   const slideLeft = (event: React.MouseEvent<SVGElement, MouseEvent>) => {
     const slider = event.currentTarget.nextElementSibling as HTMLDivElement
@@ -56,10 +56,10 @@ export default function SeriesPage () {
         loading
           ? <Spinner/>
           : <section className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-8 gap-4'>
-          {series.map(series => (
-            <div className="flex flex-col gap-2" key={series.id}>
-              <p className='text-center whitespace-nowrap overflow-hidden'>{series.name}</p>
-              <img className='rounded-lg' src={`https://image.tmdb.org/t/p/w342/${series.poster_path}`} alt="" />
+          {series.map(serie => (
+            <div className="flex flex-col gap-2 cursor-pointer" key={serie.id} onClick={() => { showModal(serie.id, true) }}>
+              <p className='text-center whitespace-nowrap overflow-hidden'>{serie.name}</p>
+              <img className='rounded-lg' src={`https://image.tmdb.org/t/p/w342/${serie.poster_path}`} alt="" />
             </div>
           ))}
         </section>

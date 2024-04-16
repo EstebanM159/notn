@@ -8,7 +8,7 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import Spinner from '../icons/Spinner'
 export default function MoviesPage () {
   const [loading, setLoading] = useState(false)
-  const { genres, movies, searchByGenres } = useAppStore()
+  const { genres, movies, searchByGenres, showModal } = useAppStore()
   const { filters, handleClick } = useSetFilters()
   useFetchDataEffect()
   useSearchByGenresEffect(filters, searchByGenres, setLoading)
@@ -56,7 +56,7 @@ export default function MoviesPage () {
           ? <Spinner/>
           : <section className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-8 gap-4'>
           {movies.map(movie => (
-            <div className="flex flex-col gap-2" key={movie.id}>
+            <div className="flex flex-col gap-2 cursor-pointer" key={movie.id} onClick={async () => await showModal(movie.id, false)}>
               <p className='text-center whitespace-nowrap overflow-hidden'>{movie.title}</p>
               <img className='rounded-lg' src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`} alt="" />
             </div>

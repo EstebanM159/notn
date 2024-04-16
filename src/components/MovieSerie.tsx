@@ -1,14 +1,14 @@
+import { useAppStore } from '../stores/useAppStore'
 import { type MovieSerieType } from '../types'
 type MovieSerieProps = {
   item: MovieSerieType
 }
 export default function MovieSerie ({ item }: MovieSerieProps) {
+  const { showModal } = useAppStore()
   const name = item.name ? item.name : item.title
-  const handleClick = (id: number) => {
-    console.log(id)
-  }
+  const isSerie = !!item.name
   return (
-    <div onClick={() => handleClick(item.id)}
+    <div onClick={() => { showModal(item.id, isSerie) }}
       className='w-40 sm:w-52 md:w-60 lg:w-72 inline-block cursor-pointer relative mr-2 md:mx-3'>
       {
         item.backdrop_path

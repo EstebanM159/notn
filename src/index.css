@@ -12,3 +12,7 @@
           scrollbar-width: none;  /* Firefox */
     }
   }
+.my-atropos{
+    width: 500px;
+  height: 160px;
+}
