@@ -16,6 +16,7 @@ export default function MovieSerie ({ item }: MovieSerieProps) {
               rel='preload'
               className='w-full h-auto block'
               src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
+              alt={`Poster de ${item.title}`}
             />
           : <div className='bg-notFound w-full h-20 md:h-36 bg-contain bg-no-repeat bg-center'></div>
       }

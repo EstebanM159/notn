@@ -10,7 +10,7 @@ const Modal = () => {
       {modal
         ? (
         <>
-          <div className="flex justify-center items-center bg-black/80 overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div onClick={closeModal} className="flex justify-center items-center bg-black/80 overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <Atropos rotateXMax={5} rotateYMax={5} shadow={false}>
                   {loading

@@ -20,7 +20,7 @@ export default function Header () {
         </nav>
       </div>
       <div className="flex gap-2 items-center">
-        <p className='text-white text-xs sm:text-lg'>elpichichi</p>
+        <p className='text-white text-xs sm:text-lg'>User</p>
         <UserSVG/>
       </div>
     </header>
